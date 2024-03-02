@@ -1,5 +1,6 @@
 require("dotenv").config();
 require("module-alias/register");
+const keepAlive = require('./keep_alive.js');
 
 // register extenders
 require("@helpers/extenders/Message");
@@ -43,5 +44,6 @@ process.on("unhandledRejection", (err) => client.logger.error(`Unhandled excepti
   }
 
   // start the client
+  keepAlive();
   await client.login(process.env.BOT_TOKEN);
 })();
